@@ -7,3 +7,11 @@ export interface Cake {
 }
 
 export type CakeCreateData = Omit<Cake, "id">;
+export interface Client {
+  id: number;
+  name: string;
+  address: string;
+  phone: string;
+}
+
+export type ClientCreateData = Omit<Client, "id">;
