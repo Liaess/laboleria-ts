@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import httpStatus from "http-status";
 import Conflict from "../errors/conflict";
+import NotFound from "../errors/NotFound";
 import Unauthorized from "../errors/unauthorized";
 import UnprocessableEntity from "../errors/unprocessableEntity";
 
@@ -24,6 +25,12 @@ export default function errorHandlingMiddleware(
 
   if (err instanceof Conflict) {
     return res.status(httpStatus.CONFLICT).send({
+      message: err.message,
+    });
+  }
+
+  if (err instanceof NotFound) {
+    return res.status(httpStatus.NOT_FOUND).send({
       message: err.message,
     });
   }

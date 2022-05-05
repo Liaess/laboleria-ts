@@ -11,8 +11,8 @@ model cakes {
   id          Int      @id @default(autoincrement())
   name        String   @unique @db.VarChar(30)
   price       Decimal  @db.Decimal(65, 2)
-  image       String   @db.VarChar(255)
   description String
+  image       String   @db.VarChar(255)
   orders      orders[]
 }
 
@@ -25,12 +25,12 @@ model clients {
 }
 
 model orders {
-  id         Int      @id @default(autoincrement())
+  id         Int     @id @default(autoincrement())
   clientId   Int
-  clients    clients  @relation(fields: [clientId], references: [id])
+  clients    clients @relation(fields: [clientId], references: [id])
   cakeId     Int
-  cakes      cakes    @relation(fields: [cakeId], references: [id])
+  cakes      cakes   @relation(fields: [cakeId], references: [id])
   quantity   Int
-  createdAt  DateTime
-  totalPrice Decimal
+  createdAt  String
+  totalPrice Decimal @db.Decimal(65, 2)
 }

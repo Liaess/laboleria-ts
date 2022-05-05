@@ -1,10 +1,18 @@
 import { prisma } from "../database";
-import { CakeCreateData } from "../interfaces";
+import { Cake, CakeCreateData } from "../interfaces";
 
-export async function find(name: string) {
+export async function findUsingName(name: string) {
   return await prisma.cakes.findUnique({
     where: {
       name,
+    },
+  });
+}
+
+export async function findUsingId(id: number) {
+  return await prisma.cakes.findUnique({
+    where: {
+      id,
     },
   });
 }

@@ -3,8 +3,8 @@ CREATE TABLE "cakes" (
     "id" SERIAL NOT NULL,
     "name" VARCHAR(30) NOT NULL,
     "price" DECIMAL(65,2) NOT NULL,
-    "image" VARCHAR(255) NOT NULL,
     "description" TEXT NOT NULL,
+    "image" VARCHAR(255) NOT NULL,
 
     CONSTRAINT "cakes_pkey" PRIMARY KEY ("id")
 );
@@ -25,8 +25,8 @@ CREATE TABLE "orders" (
     "clientId" INTEGER NOT NULL,
     "cakeId" INTEGER NOT NULL,
     "quantity" INTEGER NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL,
-    "totalPrice" DECIMAL(65,30) NOT NULL,
+    "createdAt" TEXT NOT NULL,
+    "totalPrice" DECIMAL(65,2) NOT NULL,
 
     CONSTRAINT "orders_pkey" PRIMARY KEY ("id")
 );
