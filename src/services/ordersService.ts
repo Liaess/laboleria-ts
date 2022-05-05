@@ -7,9 +7,9 @@ import dayjs from "dayjs";
 
 export async function createOrder(data: OrderCreateData) {
   const cake = await cakesRepository.findUsingId(data.cakeId);
-  if (!cake) throw new NotFound("Bolo não encontrado");
+  if (!cake) throw new NotFound("Bolo não encontrado!");
   const client = await clientsRepository.findUsingId(data.clientId);
-  if (!client) throw new NotFound("Cliente não encontrado");
+  if (!client) throw new NotFound("Cliente não encontrado!");
   let totalPrice = cake.price.toNumber() * data.quantity;
   const insertData = {
     ...data,
@@ -24,4 +24,12 @@ export async function getAllOrders(date: string | undefined) {
     return await orderRepository.getWithDate(date);
   }
   return await orderRepository.get();
+}
+
+export async function getOrder(id: number) {
+  return await orderRepository.getOrder(id);
+}
+
+export async function getAllOrdersFromClient(id: number) {
+  return await orderRepository.getOrdersClient(id);
 }

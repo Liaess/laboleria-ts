@@ -5,10 +5,11 @@ import clientsSchema from "../schemas/clientsSchema";
 
 const clientsRouter = Router();
 
-clientsRouter.use(
+clientsRouter.post(
   "/clients",
   validateSchemaMiddleware(clientsSchema),
   controller.createClient
 );
+clientsRouter.get("/clients/:id/orders", controller.getAllOrdersFromClient);
 
 export default clientsRouter;

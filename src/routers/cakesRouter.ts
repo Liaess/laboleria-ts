@@ -5,7 +5,7 @@ import cakesSchema from "../schemas/cakesSchema";
 
 const cakesRouter = Router();
 
-cakesRouter.use(
+cakesRouter.post(
   "/cakes",
   validateSchemaMiddleware(cakesSchema),
   controller.createCake
