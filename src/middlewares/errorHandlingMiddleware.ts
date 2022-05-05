@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import httpStatus from "http-status";
+import Conflict from "../errors/conflict";
 import Unauthorized from "../errors/unauthorized";
 import UnprocessableEntity from "../errors/unprocessableEntity";
 
@@ -17,6 +18,12 @@ export default function errorHandlingMiddleware(
 
   if (err instanceof Unauthorized) {
     return res.status(httpStatus.BAD_REQUEST).send({
+      message: err.message,
+    });
+  }
+
+  if (err instanceof Conflict) {
+    return res.status(httpStatus.CONFLICT).send({
       message: err.message,
     });
   }
